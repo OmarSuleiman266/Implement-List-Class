@@ -1,0 +1,76 @@
+#include <iostream>
+using namespace std;
+class List {
+	int size = 0;
+#define cap 5
+	int data[cap];
+public:
+	bool pushback(int x) {
+		if (size >= cap) {
+			cout << "List Overflow";
+			return false;
+		}
+		else {
+			data[++size] = x;
+			cout << x << "pushedback into the list \n";
+			return true;
+		}
+	}
+	bool remove(int userindex) {
+		int index = userindex - 1;
+		if ((index < 0) || (index >= size)) {
+			return false;
+		}
+		for (int pos = index; pos < size - 1; pos++)
+			data[pos] = data[pos + 1];
+		size--;
+		return true;
+	}
+	int size() {
+		return size;
+	}
+	int get(int pos) {
+		if (size == 0) {
+			cout << "list is empty";
+			return 0;
+
+		}
+		if (pos < 0 || pos >= size) {
+			cout << "Error Out of Index" << 'ln';
+			return data[size - 1];
+		}
+		return data[pos];
+	}
+	bool set(int userindex, int x) {
+		int index = userindex - 1;
+		if (size >= cap) 
+			return false;
+		if ((index < 0) || (index >= size + 1)) {
+			cout << "index is not available";
+			return false;
+		}
+		else {
+			data[index] = x;
+			return true;
+		}
+	}
+	bool pushfront(int x) {
+		if (size >= cap) {
+			cout << "List Overflow";
+			return false;
+		}
+		else {
+			for (int pos = size - 1; pos >= 0; pos--)
+				data[pos + 1] = data[pos];
+			data[0] = x;
+			size++;
+			cout << x << "pushedfront into the list \n";
+			return true;
+		}
+	}
+};
+
+int main() {
+
+	return 0;
+}
